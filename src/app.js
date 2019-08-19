@@ -5,6 +5,8 @@ const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
 const app = express();
+const port = process.env.PORT || 3000;
+
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '../template/views'));
 hbs.registerPartials(path.join(__dirname, '../template/partials'));
@@ -33,4 +35,4 @@ app.get('/weather', (req, res) => {
 });
 app.get('/help/*', (req, res) => { res.render('404', { title: 'Help', name: 'Marcio', message: 'Help topic not found' }) });
 app.get('*', (req, res) => { res.render('404', { title: '404', name: 'Marcio', message: 'Page not found' }) });
-app.listen(3000, () => { console.log('Server running on port 3000'); });
+app.listen(port, () => { console.log('Server running on port ' + port); });
