@@ -22,12 +22,12 @@ app.get('/weather', (req, res) => {
         if (error) {
             return res.send({ error });
         }
-        forecast(latitude, longitude, (error, { summary, temperature, precipProbability } = {}) => {
+        forecast(latitude, longitude, (error, { summary, temperature, precipProbability, dayhigh, daylow } = {}) => {
             if (error) {
                 return res.send({ error });
             }
             res.send({
-                forecast: `${summary} It is currently ${temperature} degrees out. There is a ${precipProbability}% chance of rain.`,
+                forecast: `${summary} It is currently ${temperature} degrees out. The high temperature for today is ${dayhigh} with a low of ${daylow}. There is a ${precipProbability}% chance of rain.`,
                 location
             });
         });
